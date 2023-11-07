@@ -2,7 +2,8 @@
 <% if user_signed_in? %> 
         <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
         <%= link_to "User Profile Page", edit_user_registration_path %>
-        <div> Welcome <%= current_user.email || current_user.email %> </div> 
+        <%= link_to "New post", new_post_path %>
+        <div> Welcome <%= current_user.email %> </div>
 <% else %>
     <%= button_to "Sign in", new_user_session_path %> 
 <% end %>

@@ -43,6 +43,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem "devise"
+gem 'carrierwave', '~> 3.0'
+gem "mini_magick"
+gem 'pagy', '~> 6.1' # omit patch digit
 # Use Sass to process CSS
 # gem "sassc-rails"
 

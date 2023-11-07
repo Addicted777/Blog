@@ -1,0 +1,39 @@
+<h1>Main Page</h1>
+<% if user_signed_in? %> 
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+        <%= link_to "User Profile Page", edit_user_registration_path %>
+        <%= link_to "New post", new_post_path %>
+        <div> Welcome <%= current_user.email %> </div>
+<% else %>
+    <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+
+<h2>
+    Posts:
+    <%= @posts.count %>
+    /
+    <%= Post.count %>
+    
+    <br>
+        <h4>
+            <%== pagy_nav(@pagy) %>
+        </h4>
+</h2>
+
+<%= @posts.each do |post| %>
+    <div class='alert alert-light'>
+        <h3><%= post.title %></h3>
+            <p><%= post.body %></p>
+                <%= image_tag post.image.url(:thumb), class: 'img-thumbnail thumb' if post.image? %>
+                <br>
+                <small>
+                    <time><%= post.created_at.to_date.strftime("%d %B, %Y") %></time>
+                    <br>
+                    <%= post.user_id %>
+                </small>
+
+        <br>
+        <%= link_to "Read more", post_path(post), :class => 'btn btn-outlite-primary' %>
+    </div>
+    <br>
+<% end %>
